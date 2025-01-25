@@ -14,10 +14,10 @@ scriptdir=$(dirname "$script_path")
 
 sudo ./zramon_x.sh $zramcapicity
 sudo ./restart_cgroup_x_swap.sh $memcapicity 300
-sleep 1
+sleep 3
 
 sudo ./restart_redis_cgroup.sh
-sleep 1
+sleep 3
 
 pushd /home/yuri/YCSB
 sudo ./bin/ycsb load redis -s -P workloads/workload_redis_uniform -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1

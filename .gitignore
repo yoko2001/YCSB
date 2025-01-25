@@ -1,6 +1,10 @@
 # ignore compiled byte code
 target
 
+# djl log
+endmemstat*
+*.txt
+
 # ignore output files from testing
 output*
 
@@ -15,7 +19,7 @@ output*
 *.iml
 *.ipr
 *.iws
-
+*.log
 # ignore standard Vim and Emacs temp files
 *.swp
 *~
@@ -23,3 +27,7 @@ output*
 # ignore standard Mac OS X files/dirs
 .DS_Store
 /differentbin/
+endmemstat.*:wq!
+
+*.txt.*
+test_ycsb/rofinal/

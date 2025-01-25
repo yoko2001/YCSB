@@ -22,8 +22,8 @@
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
 
-recordcount=1000
-operationcount=1000
+recordcount=260000
+operationcount=999999999
 workload=site.ycsb.workloads.CoreWorkload
 
 readallfields=true
@@ -34,4 +34,7 @@ scanproportion=0
 insertproportion=0
 
 requestdistribution=zipfian
-
+redis.host=127.0.0.1
+redis.port=6379
+redis.client.timeout=100000
+redis.client.poolsize=1000

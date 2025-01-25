@@ -3,6 +3,8 @@ sudo killall java
 sudo killall redis-server
 sudo killall memcached
 swapoff /dev/zram0
+swapoff /dev/ram0
+
 #set -e
 # 检查参数的个数是否为1
 if [ "$#" -ne 1 ]; then

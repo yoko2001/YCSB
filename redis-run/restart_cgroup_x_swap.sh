@@ -30,8 +30,9 @@ fi
 cgcreate -g cpu:$cgroup_name
 echo "Created new cgroup $cgroup_name"
 
+echo "0-15" > /sys/fs/cgroup/$cgroup_name/cpuset.cpus
 echo $(($memory_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.max
-echo $(($swap_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.swap.max
+# echo $(($swap_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.swap.max
 # echo $((250 * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.swap.max
 # echo "$nvme_major_minor  rbps=23068672" > /sys/fs/cgroup/$cgroup_name/io.max
 # echo "$nvme_major_minor  rbps=26214400" > /sys/fs/cgroup/$cgroup_name/io.max
