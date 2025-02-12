@@ -22,10 +22,10 @@
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
 # The number of fields in a record
-fieldcount=10
+fieldcount=5
 # The size of each field (in bytes)
 fieldlength=100
-recordcount=500000
+recordcount=1000000
 operationcount=300000000
 workload=site.ycsb.workloads.CoreWorkload
 
