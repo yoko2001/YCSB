@@ -30,7 +30,7 @@ fi
 cgcreate -g cpu:$cgroup_name
 echo "Created new cgroup $cgroup_name"
 
-echo "0-15" > /sys/fs/cgroup/$cgroup_name/cpuset.cpus
+echo "0,2,4,6,8,10,12,14" > /sys/fs/cgroup/$cgroup_name/cpuset.cpus
 echo $(($memory_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.max
 # echo $(($swap_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.swap.max
 # echo $((250 * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.swap.max

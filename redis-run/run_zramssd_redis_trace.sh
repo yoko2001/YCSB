@@ -25,18 +25,19 @@ cgroup_name="redis_ycsb"
 # 在配置好的环境中启动redis
 sudo cgexec -g cpu:$cgroup_name /usr/bin/redis-server /etc/redis/redis.conf &
 
+sudo ./set_trace_lock.sh
+# sudo ./set_trace.sh
+sudo sh -c "echo 1 > /sys/kernel/debug/tracing/tracing_on"
+sudo sh -c "cat /sys/kernel/debug/tracing/trace_pipe > trace_record_p.txt &"
 
 pushd /home/yuri/YCSB
-sudo ./bin/ycsb load redis -s -P workloads/workload_redis_zipfian2  -threads 1 -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1
+sudo ./bin/ycsb load redis -s -P workloads/workload_redis_zipfian  -threads 1 -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1
 sleep 3
-sudo ./bin/ycsb run redis -s -P workloads/workload_redis_zipfian2 -p "redis.host=127.0.0.1" -p "redis.port=6379" -p maxexecutiontime=$maxexecutiontime > $scriptdir/outputRun-$ramcapicity-$memcapicity-$postfix 2>&1
-
-# sudo ./bin/ycsb load redis -s -P workloads/workload_redis_zipfian  -threads 1 -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1
-# sleep 3
-# sudo ./bin/ycsb run redis -s -P workloads/workload_redis_zipfian -p "redis.host=127.0.0.1" -p "redis.port=6379" -p maxexecutiontime=$maxexecutiontime > $scriptdir/outputRun-$ramcapicity-$memcapicity-$postfix 2>&1
+sudo ./bin/ycsb run redis -s -P workloads/workload_redis_zipfian -p "redis.host=127.0.0.1" -p "redis.port=6379" -p maxexecutiontime=$maxexecutiontime > $scriptdir/outputRun-$ramcapicity-$memcapicity-$postfix 2>&1
 
 echo "after test cgroup peak[$(cat /sys/fs/cgroup/$cgroupname/memory.peak)]"
 popd
+sudo sh -c "echo 0 > /sys/kernel/debug/tracing/tracing_on"
 
 sudo cp /sys/fs/cgroup/$cgroupname/memory.stat ./endmemstat.$ramcapicity-$memcapicity-$postfix
 sleep 5
