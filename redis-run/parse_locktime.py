@@ -8,13 +8,13 @@ totalcount = 0
 # 打开文件并逐行读取
 with open('trace_record_p.txt', 'r') as file:
     # 正则表达式
-    pattern = r'entry=\[([0-9a-f]+)\]\s+cpu=(\d+)\s+wait_time_ns=(\d+)'
+    pattern = r'entry=\[([0-9a-f]+)\]\s+mig=\[([0-9a-f]+)\]\s+cpu=(\d+)\s+wait_time_ns=(\d+)'
     
     # 逐行处理
     for line in file:
         match = re.search(pattern, line)
         if match:
-            entry, cpu, wait_time_ns = match.groups()
+            entry, mig, cpu, wait_time_ns = match.groups()
             wait_time_ns = int(wait_time_ns)
             totalcount += 1
             totallat += wait_time_ns
