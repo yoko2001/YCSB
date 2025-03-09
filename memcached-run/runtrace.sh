@@ -1,12 +1,15 @@
-num=5
+# num=5
+
 echo 0 > /sys/kernel/debug/clever_swap_alloc
-sudo ./run_zramssd_memcached_trace.sh expo-default-trace-zramssd-10min-run$num 200 600 600
-python ./parse_locktime.py > default.latency.run$num 
+sudo ./run_zramssd_memcached_trace.sh final-expo-default-10min-trace 300 500 600
+python parse_locktime.py > lockdefault
+
 echo 1 > /sys/kernel/debug/clever_swap_alloc
-sudo ./run_zramssd_memcached_trace.sh expo-route-trace-zramssd-10min-run$num 200 600 600
-python ./parse_locktime.py > route.latency.run$num 
+sudo ./run_zramssd_memcached_trace.sh final-expo-route-10min-trace 300 500 600
+python parse_locktime.py > lockroute
 
 echo 1 > /sys/kernel/debug/clever_swap_alloc
 echo 1 > /sys/kernel/debug/swap_scan_savior_enabled
-sudo ./run_zramssd_memcached_trace.sh expo-migroute-trace-zramssd-10min-run$num 200 600 600
-python ./parse_locktime.py > migroute.latency.run$num 
+sudo ./run_zramssd_memcached_trace.sh final-expo-migroute-10min-trace 300 500 600
+python parse_locktime.py > lockmigroute
+

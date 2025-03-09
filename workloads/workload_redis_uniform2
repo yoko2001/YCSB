@@ -36,7 +36,7 @@ updateproportion=0.5
 scanproportion=0
 # insertproportion=0.02
 insertorder=hashed
-requestdistribution=exponential
+requestdistribution=uniform
 #requestdistribution=exponential
 #requestdistribution=latest
 

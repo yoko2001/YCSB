@@ -21,23 +21,27 @@
 #   Read/update ratio: 50/50
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
-# The number of fields in a record
-fieldcount=5
-# The size of each field (in bytes)
-fieldlength=100
-recordcount=1000000
+fieldcount=1
+fieldlength=1600
+recordcount=50000
 operationcount=300000000
 workload=site.ycsb.workloads.CoreWorkload
 
 readallfields=true
+insertstart=500000
 
-readproportion=0.5
-updateproportion=0.5
+readproportion=0.50
+updateproportion=0.495
 scanproportion=0
-# insertproportion=0.02
+insertproportion=0.005
 insertorder=hashed
 requestdistribution=exponential
-#requestdistribution=exponential
+
+# requestdistribution=zipfian
+# requestdistribution=hotspot
+# hotspotdatafraction=0.2
+# hotspotopnfration=0.8
 #requestdistribution=latest
 
-maxexecutiontime=600
+maxexecutiontime=300
+threadcount=4

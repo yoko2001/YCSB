@@ -29,10 +29,10 @@ workload=site.ycsb.workloads.CoreWorkload
 
 readallfields=true
 
-readproportion=0.95
-updateproportion=0.04
+readproportion=0.50
+updateproportion=0.495
 scanproportion=0
-insertproportion=0.01
+insertproportion=0.005
 insertorder=hashed
 requestdistribution=exponential
 

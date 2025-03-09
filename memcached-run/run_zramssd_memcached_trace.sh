@@ -29,6 +29,8 @@ sudo sh -c "echo 1 > /sys/kernel/debug/tracing/tracing_on"
 sudo sh -c "cat /sys/kernel/debug/tracing/trace_pipe > trace_record_p.txt &"
 
 pushd /home/yuri/YCSB
+sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_expo-pre  -p "memcached.hosts=127.0.0.1" -threads 4 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
+
 sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_expo  -p "memcached.hosts=127.0.0.1" -threads 4 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
 
 sleep 3

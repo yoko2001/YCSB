@@ -25,12 +25,12 @@
 fieldcount=5
 # The size of each field (in bytes)
 fieldlength=100
-recordcount=1000000
+recordcount=100000
 operationcount=300000000
 workload=site.ycsb.workloads.CoreWorkload
 
 readallfields=true
-
+insertstart=1000000
 readproportion=0.5
 updateproportion=0.5
 scanproportion=0

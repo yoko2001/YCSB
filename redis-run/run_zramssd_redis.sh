@@ -27,6 +27,7 @@ sudo cgexec -g cpu:$cgroup_name /usr/bin/redis-server /etc/redis/redis.conf &
 
 
 pushd /home/yuri/YCSB
+sudo ./bin/ycsb load redis -s -P workloads/workload_redis_zipfian2-pre  -threads 1 -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1
 sudo ./bin/ycsb load redis -s -P workloads/workload_redis_zipfian2  -threads 1 -p "redis.host=127.0.0.1" -p "redis.port=6379" > $scriptdir/outputLoad.txt 2>&1
 sleep 3
 sudo ./bin/ycsb run redis -s -P workloads/workload_redis_zipfian2 -p "redis.host=127.0.0.1" -p "redis.port=6379" -p maxexecutiontime=$maxexecutiontime > $scriptdir/outputRun-$ramcapicity-$memcapicity-$postfix 2>&1

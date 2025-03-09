@@ -25,6 +25,8 @@ sudo cgexec -g cpu:$cgroupname /usr/bin/memcached -m 2048 -v -p 11211 -u memcach
 
 
 pushd /home/yuri/YCSB
+sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_expo-pre  -p "memcached.hosts=127.0.0.1" -threads 4 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
+
 sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_expo  -p "memcached.hosts=127.0.0.1" -threads 4 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
 # sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_zipfian  -p "memcached.hosts=127.0.0.1" -threads 4 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
 # sudo ./bin/ycsb load memcached -s -P workloads/workload_memcached_hotspot  -p "memcached.hosts=127.0.0.1" -threads 1 -p "memcached.host=127.0.0.1" > $scriptdir/outputLoad.txt 2>&1
