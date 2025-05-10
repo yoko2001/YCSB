@@ -43,3 +43,4 @@ echo $(($memory_limit * 1024 * 1024)) > /sys/fs/cgroup/$cgroup_name/memory.max
 
 echo "Created new cgroup $(cat /sys/fs/cgroup/$cgroup_name/memory.max)"
 
+cat /sys/fs/cgroup/$cgroup_name/cgroup.procs

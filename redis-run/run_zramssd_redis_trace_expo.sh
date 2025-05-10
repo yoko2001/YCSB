@@ -25,10 +25,10 @@ cgroup_name="redis_ycsb"
 # 在配置好的环境中启动redis
 sudo cgexec -g cpu:$cgroup_name /usr/bin/redis-server /etc/redis/redis.conf &
 
-#sudo ./set_trace_lock.sh
-# sudo ./set_trace.sh
-# sudo sh -c "echo 1 > /sys/kernel/debug/tracing/tracing_on"
-# sudo sh -c "cat /sys/kernel/debug/tracing/trace_pipe > trace_record_p-expo-$ramcapicity-$memcapicity-$postfix.txt &"
+# sudo ./set_trace_lock.sh
+sudo ./set_trace.sh
+sudo sh -c "echo 1 > /sys/kernel/debug/tracing/tracing_on"
+sudo sh -c "cat /sys/kernel/debug/tracing/trace_pipe > trace_record_p.txt &"
 sudo rm iostatlog.txt
 iostat -x /dev/vg0/lv-2 1 >> iostatlog.txt &
 pushd /home/yuri/YCSB
